@@ -1,0 +1,145 @@
+@using ShoppingBasket.CommonHelper;
+@model ShoppingBasket.Models.ViewModels.ProductDetailsVM
+
+@{
+    ViewData["Title"] = "Details";
+    ViewData["Root"] = Model.Product.Category.Name;
+    ViewData["Child_1"] = Model.Product.Name;
+    ViewData["Page"] = "Product Details";
+}
+
+<partial name="_Breadcrumb" view-data="ViewData" />
+
+<!-- Product Details Section Begin -->
+<section class="product-details spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__pic">
+                    <div class="product__details__pic__item">
+                        <img class="product__details__pic__item--large"
+                             src="@Model.Product.ProductImage_1" alt="">
+                    </div>
+                    <div class="product__details__pic__slider owl-carousel">
+                        <img data-imgbigurl="@Model.Product.ProductImage_1"
+                             src="@Model.Product.ProductImage_1" alt="">
+
+                        @if (Model.Product.ProductImage_2 != null)
+                        {
+                            <img data-imgbigurl="@Model.Product.ProductImage_2"
+                                 src="@Model.Product.ProductImage_2" alt="">
+                        }
+
+                        <img data-imgbigurl="@Model.Product.ProductImage_1"
+                             src="@Model.Product.ProductImage_1" alt="">
+
+                        @if (Model.Product.ProductImage_3 != null)
+                        {
+                            <img data-imgbigurl="@Model.Product.ProductImage_3"
+                                 src="@Model.Product.ProductImage_3" alt="">
+                        }
+                        <img data-imgbigurl="/img/placeholder.png"
+                             src="/img/placeholder.png" alt="">
+
+                        @if (Model.Product.ProductImage_2 != null)
+                        {
+                            <img data-imgbigurl="@Model.Product.ProductImage_2"
+                                 src="@Model.Product.ProductImage_2" alt="">
+                        }
+
+                        <img data-imgbigurl="/img/placeholder.png"
+                             src="/img/placeholder.png" alt="">
+                         
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <div class="product__details__text">
+                    <h3>@Model.Product.Name</h3>
+                    <div class="product__details__rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <span>(18 reviews)</span>
+                    </div>
+                    <div class="product__details__price">@Model.Product.Price.ToString("C3")</div>
+                    <p>
+                        @Model.Product.Description
+                    </p>
+
+                    <form class="border-0 d-inline-block noselect" method="post" asp-route-productId="@Model.Product.Id" asp-action="AddToCart" asp-controller="Cart" asp-area="Customer">
+                        <div class="product__details__quantity">
+                            <div class="quantity">
+                                <div class="pro-qty">
+                                    <input type="text" asp-for="@Model.Cart!.Count" />
+                                </div>
+                            </div>
+                        </div>
+                        @if (TempData["acknowledge"] != null)
+                        {
+                            <button type="button" class="primary-btn bg-secondary border-0" disabled style="cursor: no-drop">ADDED !</button>
+                            
+                        }
+                        else
+                        {
+                            <button type="submit" class="primary-btn border-0">ADD TO CARD</button>
+                        }
+                    </form>
+
+                    @if (Model.Product.Wishlist == null)
+                    {
+                        <a title="Add to wishlist!" asp-controller="Wishlist" asp-area="Customer" asp-action="AddOrDeleteWishlist" asp-route-productId="@Model.Product.Id" class="heart-icon">
+                            <span class="icon_heart_alt"></span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a title="Remove from wishlist!" asp-controller="Wishlist" asp-area="Customer" asp-action="AddOrDeleteWishlist" asp-route-productId="@Model.Product.Id" class="heart-icon">
+                            <i class="bi bi-heart-fill"></i>
+                        </a>
+                    }
+                    
+                    @if (User.IsInRole(WebsiteRoles.AdminRole))
+                    {
+                        <a asp-route-id="@Model.Product.Id" asp-action="CreateAndUpdate" asp-controller="Product" asp-area="Admin" title="Edit" class="mx-2 px-3 py-2 fs-5 fw-bold text-white btn btn-danger">Edit</a>
+                    }
+
+                    <ul>
+                        <li>
+                            <b>Availability</b> <span>In Stock (@Model.Product.Stock!.CurrentStock)</span>
+                        </li>
+                        <li>
+                            <b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span>
+                        </li>
+                        <li>
+                            <b>Share on</b>
+                            <div class="share">
+                                <a href="" id="facebook-share" target="_blank">
+                                    <i class="fa fa-facebook"></i>
+                                </a>
+                                <a href="" target="_blank">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                                <a href="" target="_blank">
+                                    <i class="fa fa-instagram"></i>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Details Section End -->
+@section Scripts
+    {
+    <script type="text/javascript">
+        let facebookShareBtn = document.getElementById("facebook-share");
+        const currentUrl = window.location.href.replace("https://", "");
+        facebookShareBtn.href = `https://www.facebook.com/sharer/sharer.php?u=${currentUrl}`;
+        console.log(facebookShareBtn);
+    </script>
+}

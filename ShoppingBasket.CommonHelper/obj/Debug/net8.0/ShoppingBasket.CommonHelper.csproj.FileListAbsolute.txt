@@ -1,0 +1,12 @@
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\bin\Debug\net8.0\ShoppingBasket.CommonHelper.deps.json
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\bin\Debug\net8.0\ShoppingBasket.CommonHelper.dll
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\bin\Debug\net8.0\ShoppingBasket.CommonHelper.pdb
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\ShoppingBasket.CommonHelper.csproj.AssemblyReference.cache
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\ShoppingBasket.CommonHelper.GeneratedMSBuildEditorConfig.editorconfig
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\ShoppingBasket.CommonHelper.AssemblyInfoInputs.cache
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\ShoppingBasket.CommonHelper.AssemblyInfo.cs
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\ShoppingBasket.CommonHelper.csproj.CoreCompileInputs.cache
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\ShoppingBasket.CommonHelper.dll
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\refint\ShoppingBasket.CommonHelper.dll
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\ShoppingBasket.CommonHelper.pdb
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.CommonHelper\obj\Debug\net8.0\ref\ShoppingBasket.CommonHelper.dll

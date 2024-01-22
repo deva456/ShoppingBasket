@@ -1,0 +1,59 @@
+﻿@{
+    ViewData["Title"] = "Home";
+}
+
+
+@await Html.PartialAsync("_HeroSection")
+@* @await Html.PartialAsync("_HeroSection", Model) *@
+
+<!-- Featured Start -->
+<div class="container pt-5">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center bg-gray justify-content-center mb-2" style="padding: 20px;">
+                <h1 class="fa fa-check text-green m-0 mr-3 fs-3" aria-hidden="true"></h1>
+                <h5 class="fw-bold">Quality Product</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center justify-content-center bg-gray mb-2" style="padding: 20px;">
+                <h1 class="fa fa-truck fs-3 text-green mr-3" aria-hidden="true"></h1>
+                <h5 class="fw-bold">Free Shipping</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center justify-content-center bg-gray mb-2" style="padding: 20px;">
+                <h1 class="fa fa-exchange text-green mr-3 fs-3" aria-hidden="true"></h1>
+                <h5 class="fw-bold">14-Day Return</h5>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
+            <div class="d-flex align-items-center justify-content-center mb-2 bg-gray" style="padding: 20px;">
+                <h1 class="fa fa-volume-control-phone fs-3 mr-3 text-green" aria-hidden="true"></h1>
+                <h5 class="fw-bold">24/7 Support</h5>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Featured End -->
+
+@await Component.InvokeAsync("FeaturedProduct")
+
+<!-- Banner Begin -->
+<div class="banner">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="img/banner/banner-1.jpg" alt="">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="banner__pic">
+                    <img src="img/banner/banner-2.jpg" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner End -->

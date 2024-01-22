@@ -1,0 +1,19 @@
+.footer__widget ul li {
+    line-height: 10px !important;
+}
+
+.header__top__right, .header__top__left {
+    padding: 5px 0 8px !important;
+}
+
+.pointer-cursor {
+    cursor: pointer;
+}
+
+.pointer-auto {
+    cursor: auto;
+}
+
+.pointer-none {
+    cursor: no-drop;
+}

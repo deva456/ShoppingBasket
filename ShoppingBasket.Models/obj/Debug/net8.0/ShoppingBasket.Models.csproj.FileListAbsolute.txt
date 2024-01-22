@@ -1,0 +1,15 @@
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\bin\Debug\net8.0\ShoppingBasket.Models.deps.json
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\bin\Debug\net8.0\ShoppingBasket.Models.dll
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\bin\Debug\net8.0\ShoppingBasket.Models.pdb
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\bin\Debug\net8.0\ShoppingBasket.CommonHelper.dll
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\bin\Debug\net8.0\ShoppingBasket.CommonHelper.pdb
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ShoppingBasket.Models.csproj.AssemblyReference.cache
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ShoppingBasket.Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ShoppingBasket.Models.AssemblyInfoInputs.cache
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ShoppingBasket.Models.AssemblyInfo.cs
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ShoppingBasket.Models.csproj.CoreCompileInputs.cache
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ShoppingBasket.Models.csproj.CopyComplete
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ShoppingBasket.Models.dll
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\refint\ShoppingBasket.Models.dll
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ShoppingBasket.Models.pdb
+D:\ShoppingApp\ShoppingBasket\ShoppingBasket.Models\obj\Debug\net8.0\ref\ShoppingBasket.Models.dll

@@ -1,0 +1,76 @@
+@using Microsoft.AspNetCore.Identity;
+
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@* for getting sessions *@
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContext
+
+<ul>
+    <li class="active">
+        <a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a>
+    </li>
+    <li>
+        <a asp-area="Customer" asp-controller="Shops" asp-action="Index">Shops</a>
+    </li>
+
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("User"))
+    {
+        <li>
+            <a>Pages</a>
+            <ul class="header__menu__dropdown">
+                <li>
+                    <a asp-area="Customer" asp-controller="Cart" asp-action="Index">Shoping Cart 
+
+                        @if(httpContext.HttpContext!.Session.GetInt32("carts") != null )
+                        {
+                            <span>
+                                (
+                                @httpContext.HttpContext.Session.GetInt32("carts")
+                                )
+                            </span>
+                        }
+                    </a>
+                </li>
+                <li>
+                    <a asp-area="Customer" asp-controller="Wishlist" asp-action="Index">Wishlist</a>
+                </li>
+
+            </ul>
+        </li>
+        <li>
+            <a asp-area="Customer" asp-controller="Orders" asp-action="Index">My Orders</a>
+        </li>
+    }
+    
+    @if (!User.IsInRole("Admin"))
+    {
+        <li>
+            <a asp-area="Customer" asp-controller="Contact" asp-action="Index">Contact</a>
+        </li>
+    }
+
+
+    @* For admin panels only *@
+    @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+    {
+        <li>
+            <a>Admin</a>
+            <ul class="header__menu__dropdown">
+                <li>
+                    <a asp-area="Admin" asp-controller="Category" asp-action="Index">Category</a>
+                </li>
+                <li>
+                    <a asp-area="Admin" asp-controller="Product" asp-action="Index">Product</a>
+                </li>
+            </ul>
+        </li>
+        <li>
+            <a asp-area="Admin" asp-controller="Messages" asp-action="Index">Queries</a>
+        </li>
+        <li>
+            <a asp-area="Customer" asp-controller="Orders" asp-action="Index">Orders</a>
+        </li>
+    }
+</ul>

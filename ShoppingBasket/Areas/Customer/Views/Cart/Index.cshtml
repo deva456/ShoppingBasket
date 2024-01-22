@@ -1,0 +1,157 @@
+@model ShoppingBasket.Models.ViewModels.CartVM
+
+@{
+    ViewData["Title"] = ViewData["Root"] = "Cart";
+    ViewData["Page"] = "Our Carts";
+}
+
+<partial name="_Breadcrumb" view-data="ViewData" />
+
+<!-- Shopping Cart Section Begin -->
+<section class="shoping-cart spad">
+    
+    <div class="container cart-detail">
+        <h4>Cart Details</h4>
+
+        @if (!Model.Carts.Any())
+        {
+            <div class="border border-4 border-danger w-50 offset-3 mt-3">
+                <p class="h3 lead text-center mt-2 p-3">Cart is empty!</p>
+            </div>
+        }
+        else {
+            <div class="row">
+            <div class="col-lg-12 mt-4">
+                <div class="shoping__cart__table">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="shoping__product">Products</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var cart in Model.Carts)
+                            {
+                                <tr>
+                                    <td class="shoping__cart__item">
+                                        <img src="@cart.Product!.ProductImage_1" alt="" width="150" class="img-thumbnail">
+                                        <h5>@cart.Product!.Name</h5>
+                                    </td>
+                                    <td class="shoping__cart__price">
+                                        @cart.Product.Price.ToString("C2")
+                                    </td>
+                                    <td class="shoping__cart__quantity noselect">
+                                        <div class="quantity">
+                                            <div class="qty">
+                                                <span onclick="decrementCount(this, @cart.Id)" class="decrement qty-btn"><i class="bi bi-dash"></i></span>
+                                                <input type="text" asp-for="@cart.Count" />
+                                                <span onclick="incrementCount(this, @cart.Id)" class="increment qty-btn"><i class="bi bi-plus"></i></span>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="shoping__cart__total">
+                                        @((cart.Count * cart.Product.Price).ToString("C2"))
+                                    </td>
+                                    <td class="shoping__cart__item__close">
+                                        <button title="Delete Cart!" onclick="deleteCart(@cart.Id)" class="close-btn btn btn-danger p-2 mx-2"><i class="bi bi-x-lg"></i></button>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+            <div class="row">
+            <div class="col-lg-12">
+                <div class="shoping__cart__btns">
+                    <a asp-controller="Shops" asp-action="Index" asp-area="Customer" class="primary-btn cart-btn">CONTINUE SHOPPING</a>
+                    <a href="#" class="primary-btn cart-btn cart-btn-right" hidden>
+                        <span class="icon_loading"></span>
+                        Upadate Cart
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__continue">
+                    <div class="shoping__discount">
+                        <h5>Discount Codes</h5>
+                        <form action="#">
+                            <input type="text" placeholder="Enter your coupon code" />
+                            <button type="submit" class="site-btn">APPLY COUPON</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="shoping__checkout">
+                    <h5>Cart Total</h5>
+                    <hr/>
+                    <ul>
+                        <li>Subtotal <span>$454.98</span></li>
+                        <li>Total <span>@Model.Total.ToString("C2")</span></li>
+                    </ul>
+                    <a asp-action="Checkout" asp-controller="Cart" asp-area="Customer" class="primary-btn">PROCEED TO CHECKOUT</a>
+                </div>
+            </div>
+        </div>
+        }
+    </div>
+</section>
+<!-- Shopping Cart Section End -->
+@section Scripts
+    {
+    <script type="text/javascript">
+
+        function incrementCount(e, cartId) {
+            const count = 1;
+            $.ajax({
+                method: "GET",
+                url: `/Customer/Cart/Increment?cartId=${cartId}&count=${count}`,
+                success: function (data) {
+                    e.parentNode.children[1].value++;  // updating the value instant
+                    window.location.reload();
+                },
+                error: function (error) {
+                    console.log(error);
+                    alert("Could not increment the value!");
+                }
+            })
+        }
+
+        function decrementCount(e, cartId) {
+            const count = 1;
+            $.ajax({
+                method: "GET",
+                url: `/Customer/Cart/Decrement?cartId=${cartId}&count=${count}`,
+                success: function (data) {
+                    e.parentNode.children[1].value--;  // updating the value instant
+                    window.location.reload();
+                },
+                error: function (error) {
+                    console.log(error);
+                    alert("Could not decrement the value!");
+                }
+            });
+        }
+
+        function deleteCart(cartId) {
+            $.ajax({
+                method: "DELETE",
+                url: `/Customer/Cart/Delete?cartId=${cartId}`,
+                success: function (data) {
+                    console.log(data);
+                    window.location.reload();
+                },
+                error: function (data) {
+                    console.log(data);
+                    alert("Could not delete the cart!");
+                }
+            });
+        }
+    </script>
+    }

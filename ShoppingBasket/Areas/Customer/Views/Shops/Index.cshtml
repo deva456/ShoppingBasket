@@ -1,0 +1,117 @@
+@using ShoppingBasket.CommonHelper;
+@model ShoppingBasket.Models.ViewModels.ShopsVM;
+
+@{
+    ViewData["Title"] = ViewData["Root"] = "Shops";
+    ViewData["Page"] = "Our Shops";
+}
+
+<partial name="_Breadcrumb" view-data="ViewData" />
+
+<!-- Product Section Begin -->
+<section class="product spad">
+    <div class="container">
+        <partial name="_SearchBox" />
+        <div class="row">
+            <div class="col-lg-3 col-md-5">
+                <div class="sidebar">
+                    @* @await Html.PartialAsync("_Categories", Model.Categories) *@
+                    @await Component.InvokeAsync("Category")
+                    <div class="mb-4"></div>
+                </div>
+            </div>
+            <div class="col-lg-9 col-md-7">
+                <div class="filter__item">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-5">
+                            <div class="filter__sort">
+                                <span>Sort By</span>
+                                <select id="sortProduct" onchange="handleChange()" asp-for="@Model.SortBy">
+                                    <option value="@FilterBy.DEFAULT">
+                                        Default
+                                    </option>
+                                    <option value="@FilterBy.PRICE_DESC">
+                                        High -> Low
+                                    </option>
+                                    <option value="@FilterBy.PRICE_ASC">
+                                        Low -> High
+                                    </option>
+                                    <option value="@FilterBy.NEW">
+                                        New
+                                    </option>
+                                </select>
+
+                                <div hidden>
+                                    <a id="High_To_Low" asp-action="Index" asp-asp-controller="Shops" asp-asp-area="Customer" asp-route-sortBy="@FilterBy.PRICE_DESC"></a>
+                                    <a id="Low_To_High" asp-action="Index" asp-asp-controller="Shops" asp-asp-area="Customer" asp-route-sortBy="@FilterBy.PRICE_ASC"></a>
+                                    <a id="Default" asp-action="Index" asp-asp-controller="Shops" asp-asp-area="Customer" asp-route-sortBy="@FilterBy.DEFAULT"></a>
+                                    <a id="New" asp-action="Index" asp-asp-controller="Shops" asp-asp-area="Customer" asp-route-sortBy="@FilterBy.NEW"></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-4">
+                            <div class="filter__found">
+                                <h6><span>@Model.ProductsCount</span> Products found</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+
+                    @foreach (var product in Model.products)
+                    {
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <div class="product__item__pic set-bg img-thumbnail" data-setbg="@product.ProductImage_1">
+                                    <ul class="product__item__pic__hover">
+                                        <li>
+                                            @if (!User.Identity!.IsAuthenticated)
+                                            {
+                                                <a onclick="addOrRemoveToWishlist(this, @product.Id)" title="Add to wishlist!" class="heart-icon">
+                                                    <span class="icon_heart_alt"></span>
+                                                </a>
+                                            }
+                                            else if (product.Wishlist == null || (Model.AuthenticatedUser.ToString() != product.Wishlist.ApplicationUserId.ToString()))
+                                            {
+                                                <a onclick="addOrRemoveToWishlist(this, @product.Id)" title="Add to wishlist!" class="heart-icon">
+                                                    <span class="icon_heart_alt"></span>
+                                                </a>
+                                            }
+                                            else
+                                            {
+                                                <a onclick="addOrRemoveToWishlist(this, @product.Id)" title="Remove from wishlist!" class="heart-icon" >
+                                                    <span class="bi bi-heart-fill"></span>
+                                                </a>
+                                            }
+                                        </li>
+                                        <li>
+                                            <a onclick="addToCart(this, @product.Id)" class="pointer-cursor">
+                                                <i class="fa fa-shopping-cart"></i>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="product__item__text">
+                                    <h6>
+                                        <a asp-area="Customer" asp-route-id="@product.Id" asp-controller="Shops" asp-action="Details">@product.Name</a>
+                                    </h6>
+                                    <h5>@product.Price.ToString("C2")</h5>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                @if (Model.products.Any())
+                {
+                    <div class="product__pagination">
+                        @for(var pageNo = 1; pageNo <= Model.PageCount; pageNo++)
+                        {
+                            <a asp-controller="Shops" asp-action="Index" asp-area="Customer" asp-route-page="@pageNo">@pageNo</a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Product Section End -->
